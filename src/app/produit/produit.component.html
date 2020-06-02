@@ -1,0 +1,19 @@
+<p>Je suis le paragraphe du composant produit</p>
+<ul>
+  <li *ngFor="let produit of produits">
+    Réf: {{produit.ref}}, Quantité: {{produit.quantite}}, Prix Unitaire: {{produit.prixUnitaire}}
+  </li>
+  <p></p>
+  <table class="table-bordered table-hover table-secondary text-center" >
+    <thead class="text-primary">
+      <tr>
+        <th>Réf</th> <th>Quantité</th> <th>Prix Unitaire</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let produit of produits">
+        <td>{{produit.ref}}</td> <td>{{produit.quantite}}</td> <td>{{produit.prixUnitaire}}</td>
+      </tr>
+    </tbody>
+  </table>
+</ul>
