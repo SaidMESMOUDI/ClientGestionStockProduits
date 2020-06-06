@@ -57,11 +57,21 @@
           <input formControlName="username"  [(ngModel)]="credentials.username" name="username"
                  id="username" type="text" class="form-control text-primary" placeholder="Enter your username" />
         </div>
+        <div class="alert alert-danger text-danger small"
+             *ngIf="loginForm.controls['username'].invalid &&
+                        loginForm.controls['username'].dirty">Username min length = 3, max length = 15
+        </div>
+
         <div class="form-group">
           <label for="psw"><b>Password</b></label>
           <input formControlName="password" [(ngModel)]="credentials.password" name="password"
                  id="psw" type="password" class="form-control text-primary" data-type="password" placeholder="Enter your password" />
         </div>
+        <div class="alert alert-danger text-danger small"
+             *ngIf="loginForm.controls['password'].invalid &&
+                        loginForm.controls['password'].dirty">Password min length = 3, max length = 15
+        </div>
+
         <button [disabled]="loginForm.pristine || loginForm.invalid" type="submit"
                 class="btn btn-outline-primary btn-block btn-sm font-weight-bold">
           <i class="fas fa-sign-in-alt"></i> &nbsp;Login

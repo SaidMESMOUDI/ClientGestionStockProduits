@@ -15,10 +15,9 @@ export class AppService {
 
   authenticate(credentials, callback){
     /*this.authenticated = credentials && credentials.username == 'user' && credentials.password == 'userpass';*/
-    if(credentials) {
+    /*if (credentials) {
       const token = btoa(credentials.username + ':' + credentials.password);
       this.cookieService.set('token', token);
-
       this.httpClient.get(API_URLS.USER_URL).subscribe(
         response => {
                             if(response && response['name']){
@@ -28,17 +27,25 @@ export class AppService {
                             }
           return callback && callback();
         });
-
     }else {
       this.authenticated = false;
-    }
-  }
+    }*/
 
-  logout(callback){
-    /*this.httpClient.post('logout', {}).subscribe(() => {
+    if (!credentials) {
       this.authenticated = false;
-      return callback && callback();
-    });*/
+    } else {
+      const token = btoa(credentials.username + ':' + credentials.password);
+      this.cookieService.set('token', token);
+      this.httpClient.get(API_URLS.USER_URL).subscribe(
+        response => {
+          this.authenticated = !!(response && response['name']);
+          return callback && callback();
+        });
+    }
+
+  }
+  logout(callback){
+    this.authenticated = false;
     return callback && callback();
   }
 
