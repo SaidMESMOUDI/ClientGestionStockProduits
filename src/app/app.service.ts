@@ -14,7 +14,7 @@ export class AppService {
               private cookieService: CookieService) {
   }
 
-  authenticate(credentials, callback){
+  authenticate(credentials, callback) {
     /*this.authenticated = credentials && credentials.username == 'user' && credentials.password == 'userpass';*/
     /*if (credentials) {
       const token = btoa(credentials.username + ':' + credentials.password);
