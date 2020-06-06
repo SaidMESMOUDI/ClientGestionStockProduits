@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {API_URLS} from './config/api.url.config';
 //import 'rxjs/add/operator/finally';
 import {CookieService} from 'ngx-cookie-service';
@@ -11,7 +11,8 @@ export class AppService {
   authenticated: boolean = false;
 
   constructor(private httpClient: HttpClient,
-              private cookieService: CookieService) { }
+              private cookieService: CookieService) {
+  }
 
   authenticate(credentials, callback){
     /*this.authenticated = credentials && credentials.username == 'user' && credentials.password == 'userpass';*/
@@ -44,7 +45,8 @@ export class AppService {
     }
 
   }
-  logout(callback){
+
+  logout(callback) {
     this.authenticated = false;
     return callback && callback();
   }
