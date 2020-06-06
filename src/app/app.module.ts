@@ -11,19 +11,27 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
+import {XhrInterceptor} from './xhr.interceptor';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
     AppComponent, ProduitComponent, NavbarComponent,
-    ContentComponent, SidebarComponent, DashboardComponent
+    ContentComponent, SidebarComponent, DashboardComponent,
+    LoginComponent, HomeComponent, UserComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, ReactiveFormsModule,
     FormsModule, HttpClientModule
   ],
   providers: [
-    ProduitMockService, ProduitService
+    ProduitMockService, ProduitService,
+    {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true},
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

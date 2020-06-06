@@ -1,4 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {AppService} from '../app.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +15,8 @@ export class NavbarComponent implements OnInit {
   @Output()
   showSideBarChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private appService: AppService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -21,5 +24,11 @@ export class NavbarComponent implements OnInit {
   afficherSidebar() {
     this.showSideBar = !this.showSideBar;
     this.showSideBarChange.emit(this.showSideBar);
+  }
+
+  logout() {
+    this.appService.logout(() => {
+      this.router.navigateByUrl("/login");
+    });
   }
 }

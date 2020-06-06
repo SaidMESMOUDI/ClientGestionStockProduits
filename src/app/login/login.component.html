@@ -1,0 +1,79 @@
+<!--
+<div class="row mt-5" >
+  <div class="offset-lg-3 col-lg-6">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+      <div class="card bg-light">
+        &lt;!&ndash;<div class="card-header bg-secondary text-white font-weight-bold text-center">Authentication</div>&ndash;&gt;
+        <div class="card-title text-primary text-center font-weight-bold mt-2 mb-1">Authentication</div>
+        <hr class="btn-primary mt-1 mb-1"/>
+        <div class="card-body">
+          <form [formGroup]="loginForm" (submit)="login()">
+            <div class="form-group">
+              <label for="username" class="control-label text-primary">Username</label>
+              <input formControlName="username"  [(ngModel)]="credentials.username" name="username"
+                     id="username" type="text" class="form-control text-primary" placeholder="Enter your username" />
+            </div>
+            <div class="alert alert-danger small"
+                 *ngIf="loginForm.controls['username'].invalid &&
+                        loginForm.controls['username'].dirty">Username min-Length = 3, max-Length = 15
+            </div>
+            <div class="form-group">
+              <label for="password" class="control-label text-primary">Password</label>
+              <input formControlName="password" [(ngModel)]="credentials.password" name="password"
+                     id="password" type="password" class="form-control text-primary" data-type="password" placeholder="Enter your password" />
+            </div>
+            <div class="alert alert-danger small"
+                 *ngIf="loginForm.controls['password'].invalid &&
+                        loginForm.controls['password'].dirty">Password min-Length = 3, max-Length = 15
+            </div>
+            <button [disabled]="loginForm.pristine || loginForm.invalid" type="submit"
+                    class="btn btn-outline-primary btn-block btn-sm font-weight-bold">
+              <i class="fas fa-sign-in-alt"></i> &nbsp;Log In
+            </button>
+          </form>
+        </div>
+        &lt;!&ndash;<div class="card-footer bg-secondary small text-sm-center">Coded with &hearts; by <a href="#">Saïd MESMOUDI.</a></div>&ndash;&gt;
+      </div>
+    </div>
+    <div class="col-lg-4"></div>
+  </div>
+</div>
+-->
+<div class="row mt-5" >
+  <div class="offset-lg-4 col-lg-4">
+    <form [formGroup]="loginForm" (submit)="login()">
+      <h3 class="text-primary text-center mt-1">Authentication</h3>
+      <hr class="bg-primary font-weight-bolder"/>
+      <div class="text-center m-2 p-2">
+        <!--<img src="img_avatar2.png" alt="Avatar" class="avatar">-->
+        <i class="fa fa-user-circle" aria-hidden="true"></i>
+      </div>
+
+      <div class="container">
+        <div class="form-group">
+          <label for="username"><b>Username</b></label>
+          <input formControlName="username"  [(ngModel)]="credentials.username" name="username"
+                 id="username" type="text" class="form-control text-primary" placeholder="Enter your username" />
+        </div>
+        <div class="form-group">
+          <label for="psw"><b>Password</b></label>
+          <input formControlName="password" [(ngModel)]="credentials.password" name="password"
+                 id="psw" type="password" class="form-control text-primary" data-type="password" placeholder="Enter your password" />
+        </div>
+        <button [disabled]="loginForm.pristine || loginForm.invalid" type="submit"
+                class="btn btn-outline-primary btn-block btn-sm font-weight-bold">
+          <i class="fas fa-sign-in-alt"></i> &nbsp;Login
+        </button>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+      </div>
+
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" class="btn btn-outline-danger btn-sm font-weight-bold">Cancel</button>
+        <footer class="float-right pt-2">Forgot <a href="#">password?</a></footer>
+      </div>
+    </form>
+  </div>
+</div>

@@ -3,8 +3,6 @@ import {ProduitService} from './produit.service';
 import {Produit} from '../shared/Produit';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs';
-
 
 @Component({
   selector: 'app-produit',
