@@ -7,11 +7,13 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" [routerLink]="[{outlets:{contentOutlet: 'produit'}}]"
-         routerLinkActive="active">Produits</a>
+         routerLinkActive="active"
+         *ngIf="hasRoleUser()">Produits</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="user"
-         routerLinkActive="active">Utilisateurs</a>
+      <a class="nav-link" [routerLink]="[{outlets:{contentOutlet: 'user'}}]"
+         routerLinkActive="active"
+         *ngIf="hasRoleAdmin()" >Utilisateurs</a>
     </li>
   </ul>
 </nav>

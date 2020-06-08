@@ -6,6 +6,7 @@ import {ProduitComponent} from './produit/produit.component';
 import {ProduitResolver} from './produit/produit.resolver';
 import {LoginComponent} from './login/login.component';
 import {HomeComponent} from './home/home.component';
+import {UserComponent} from './user/user.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,11 +14,12 @@ const appRoutes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent, outlet: 'contentOutlet'},
       { path: 'produit', component: ProduitComponent , resolve: {produits: ProduitResolver}, outlet: 'contentOutlet' },
+      { path: 'user', component: UserComponent, outlet: 'contentOutlet' }
     ]
   },
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
-/*  { path: 'user', component: UsersComponent },
+/*
   { path: 'signin', component: SigninComponent },
   { path: '**', component: NotFoundComponent }*/
 
