@@ -6,7 +6,6 @@ import {CookieService} from 'ngx-cookie-service';
 import {Store} from '@ngrx/store';
 import {PrincipalState} from './shared/principal.state';
 import {SAVE_PRINCIPAL} from './shared/save.principal.action';
-import {Principal} from './shared/principal.model';
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +44,7 @@ export class AppService {
       this.cookieService.set('token', token);
       this.httpClient.get(API_URLS.USER_URL).subscribe(
         response => {
-          if(response && response['name']){
+          if (response && response['name']) {
             this.authenticated = true;
             //console.log(response);
             /*response = {
@@ -58,7 +57,7 @@ export class AppService {
               type: SAVE_PRINCIPAL,
               payload: response
             });
-          }else {
+          } else {
             this.authenticated = false;
           }
           return callback && callback();
