@@ -2,40 +2,45 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {ProduitComponent} from './produit/produit.component';
-import {ProduitMockService} from './produit/produit.mock.service';
-import {ProduitService} from './produit/produit.service';
-import {NavbarComponent} from './navbar/navbar.component';
-import {ContentComponent} from './content/content.component';
-import {SidebarComponent} from './sidebar/sidebar.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
+import {ProductMockService} from './produit/service/product.mock.service';
+import {ProductService} from './produit/service/product.service';
 import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {LoginComponent} from './login/login.component';
 import {HomeComponent} from './home/home.component';
-import {UserComponent} from './user/user.component';
-import {XhrInterceptor} from './xhr.interceptor';
+import {XhrInterceptor} from './authentication/xhr.interceptor';
 import {CookieService} from 'ngx-cookie-service';
 import {StoreModule} from '@ngrx/store';
-import {principalReducer} from './shared/principal.reducer';
+import {principalReducer} from './authentication/shared/principal.reducer';
+import {SharedModule} from './shared/shared.module';
+import {UserModule} from './user/user.module';
+import {AuthenticationModule} from './authentication/authentication.module';
+import {DashboardModule} from './dashboard/dashboard.module';
+import {ProductModule} from './produit/product.module';
+import {AppMenuModule} from './menu/app.menu.module';
 
 @NgModule({
   declarations: [
-    AppComponent, ProduitComponent, NavbarComponent,
-    ContentComponent, SidebarComponent, DashboardComponent,
-    LoginComponent, HomeComponent, UserComponent
+    AppComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule, AppRoutingModule, ReactiveFormsModule,
     FormsModule, HttpClientModule,
-    StoreModule.forRoot({principal: principalReducer})
+    StoreModule.forRoot({principal: principalReducer}),
+    AuthenticationModule,
+    DashboardModule,
+    AppMenuModule,
+    ProductModule,
+    UserModule,
+    SharedModule
   ],
   providers: [
-    ProduitMockService, ProduitService,
+    ProductMockService, ProductService,
     {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true},
     CookieService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

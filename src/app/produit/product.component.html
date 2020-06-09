@@ -1,0 +1,101 @@
+<h3>Produits</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <table class="table table-sm table-hover table-responsive-md text-center" >
+        <thead class="text-primary">
+          <tr>
+            <th>Identifiant</th><th>Référence</th> <th>Quantité</th> <th>Prix Unitaire</th>
+            <th>
+              <button class="btn btn-outline-primary btn-sm" (click)="operation ='add'; initProduct(); ">
+                <i class="fas fa-plus"></i>
+              </button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>{{product.id}}</td><td>{{product.ref}}</td> <td>{{product.quantite}}</td> <td>{{product.prixUnitaire}}</td>
+            <td>
+              <button class="btn btn-outline-warning btn-sm" (click)="operation ='edit'; selectedProduct=product;">
+                <i class="far fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-outline-danger btn-sm"  (click)="operation ='remove'; selectedProduct=product;">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header bg-secondary text-white">
+          {{operation == 'add' ? 'Ajouter un product' :
+            operation == 'edit' ? 'Modifier un product' :
+            operation == 'remove' ? 'Supprimer un product': ''
+          }}
+        </div>
+        <div class="card-body">
+          <div *ngIf="operation == 'add' || operation == 'edit'">
+            <form [formGroup]="productForm">
+              <div class="form-group">
+                <label for="ref">Référence:</label>
+                <input id="ref" type="text" class="form-control" formControlName="ref" [(ngModel)]="selectedProduct.ref"/>
+              </div>
+              <div class="alert alert-danger small"  *ngIf="productForm.controls['ref'].invalid &&
+                (productForm.controls['ref'].touched || productForm.controls['ref'].dirty)">
+                Référence est obligatoire!
+              </div>
+              <div class="form-group">
+                <label for="quantite">Quantité:</label>
+                <input id="quantite" type="number" class="form-control" formControlName="quantite" [(ngModel)]="selectedProduct.quantite"/>
+              </div>
+              <div class="alert alert-danger small" *ngIf="productForm.controls['quantite'].invalid &&
+                (productForm.controls['quantite'].dirty)">
+                Quantité min=1, max=500
+              </div>
+              <div class="form-group">
+                <label for="prixUnitaire">Prix Unitaire:</label>
+                <input id="prixUnitaire" type="number" class="form-control" formControlName="prixUnitaire" [(ngModel)]="selectedProduct.prixUnitaire"/>
+              </div>
+              <div class="alert alert-danger small" *ngIf="productForm.controls['prixUnitaire'].invalid &&
+                (productForm.controls['prixUnitaire'].dirty)">
+                Prix min = 0.1
+              </div>
+              <button [disabled]="productForm.pristine || productForm.invalid" type="submit"
+                      class="btn btn-success btn-sm"
+                      (click)="operation == 'add' ? addProduct() : updateProduct()">
+                {{operation == 'add' ? 'Ajouter' : operation == 'edit' ? 'Modifier' : '' }}
+                <!--{{operation == 'add' ? 'Ajouter' :
+                  operation == 'edit' ? 'Modifier' : 'Supprimer' }}-->
+              </button>
+            </form>
+          </div>
+          <div  *ngIf="operation == 'remove'">
+            <h6 class="text-black-50">
+              {{selectedProduct.ref}}
+            </h6>
+            <p class="alert-warning text-danger"  [hidden]="!selectedProduct.ref">
+              Voulez-vous supprimer ce product ?
+            </p>
+            <p class="alert-success" [hidden]="selectedProduct.ref">
+              Le product a bien été supprimé !
+            </p>
+            <button class="btn btn-danger btn-sm" (click)="deleteProduct()"
+                    [hidden]="!selectedProduct.ref" > Confirmer
+            </button>
+          </div>
+        </div>
+        <div class="card-footer">
+          footer
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
