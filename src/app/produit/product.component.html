@@ -1,3 +1,6 @@
+<app-crud></app-crud>
+
+<!--
 <h3>Produits</h3>
 <div class="container">
   <div class="row">
@@ -33,9 +36,9 @@
     <div class="col-md-4">
       <div class="card">
         <div class="card-header bg-secondary text-white">
-          {{operation == 'add' ? 'Ajouter un product' :
-            operation == 'edit' ? 'Modifier un product' :
-            operation == 'remove' ? 'Supprimer un product': ''
+          {{operation == 'add' ? 'Ajouter un produit' :
+            operation == 'edit' ? 'Modifier un produit' :
+            operation == 'remove' ? 'Supprimer un produit': ''
           }}
         </div>
         <div class="card-body">
@@ -69,8 +72,8 @@
                       class="btn btn-success btn-sm"
                       (click)="operation == 'add' ? addProduct() : updateProduct()">
                 {{operation == 'add' ? 'Ajouter' : operation == 'edit' ? 'Modifier' : '' }}
-                <!--{{operation == 'add' ? 'Ajouter' :
-                  operation == 'edit' ? 'Modifier' : 'Supprimer' }}-->
+                &lt;!&ndash;{{operation == 'add' ? 'Ajouter' :
+                  operation == 'edit' ? 'Modifier' : 'Supprimer' }}&ndash;&gt;
               </button>
             </form>
           </div>
@@ -96,6 +99,4 @@
     </div>
   </div>
 </div>
-
-
-
+-->

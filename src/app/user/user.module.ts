@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {UserComponent} from './user.component';
-import {ReactiveFormsModule} from '@angular/forms';
-import {SharedModule} from '../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
-
+import { UserComponent } from './user.component';
+import {CommonModule} from '@angular/common';
+import {CrudModule} from '../crud/crud.module';
 
 @NgModule({
-  declarations: [
-    UserComponent
-  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SharedModule
+    CrudModule,
+  ],
+  declarations: [
+    UserComponent
   ]
 })
-export class UserModule { }
+export class UserModule{
+
+}

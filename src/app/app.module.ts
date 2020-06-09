@@ -12,12 +12,15 @@ import {XhrInterceptor} from './authentication/xhr.interceptor';
 import {CookieService} from 'ngx-cookie-service';
 import {StoreModule} from '@ngrx/store';
 import {principalReducer} from './authentication/shared/principal.reducer';
-import {SharedModule} from './shared/shared.module';
 import {UserModule} from './user/user.module';
 import {AuthenticationModule} from './authentication/authentication.module';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {ProductModule} from './produit/product.module';
 import {AppMenuModule} from './menu/app.menu.module';
+import {UserService} from './user/service/user.service';
+import { CrudComponent } from './crud/crud.component';
+import {CrudModule} from './crud/crud.module';
+//import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,20 +28,24 @@ import {AppMenuModule} from './menu/app.menu.module';
     HomeComponent,
   ],
   imports: [
-    BrowserModule, AppRoutingModule, ReactiveFormsModule,
-    FormsModule, HttpClientModule,
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
     StoreModule.forRoot({principal: principalReducer}),
     AuthenticationModule,
     DashboardModule,
     AppMenuModule,
     ProductModule,
     UserModule,
-    SharedModule
+    CrudModule,
+
   ],
   providers: [
-    ProductMockService, ProductService,
+    ProductMockService, ProductService, UserService,
     {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true},
-    CookieService
+    CookieService,
   ],
   bootstrap: [AppComponent]
 })
