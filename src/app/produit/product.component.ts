@@ -3,6 +3,7 @@ import {ProductService} from './service/product.service';
 import {Product} from './model/product.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
+import {DataModel} from '../crud/model/data.model';
 
 @Component({
   selector: 'app-product',
@@ -12,20 +13,28 @@ import {ActivatedRoute} from '@angular/router';
 export class ProductComponent implements OnInit {
 
   products: Product[];
+  product: Product = new Product();
+  productsModel: DataModel[];
   productForm: FormGroup;
   operation = 'add';
   selectedProduct: Product;
 
-  constructor(private productService: ProductService,
+  constructor(public productService: ProductService,
               private formBuilder: FormBuilder,
               private activatedRoute: ActivatedRoute) {
-    this.createForm();
+
   }
 
   ngOnInit(): void {
-    this.initProduct();
-    // this.loadProducts();
     this.products = this.activatedRoute.snapshot.data.products;
+    this.createForm();
+    this.productsModel = [
+      new DataModel('id', 'ID', 'number',true,[]),
+      new DataModel('ref', 'Référence', 'string',false,[]),
+      new DataModel('quantite', 'Quantité', 'number',false,[]),
+      new DataModel('prixUnitaire', 'Prix Unitaire', 'number',false,[])
+
+    ];
   }
 
   createForm() {
@@ -36,51 +45,5 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  initProduct() {
-    this.selectedProduct = new Product();
-    this.createForm();
-  }
 
-  loadProducts() {
-    this.productService.getAll().subscribe(
-      data => {
-        this.products = data;
-      },
-      error => {
-        console.log('An error was occured.');
-      },
-      () => {
-        console.log('loading products was done.');
-      }
-    );
-  }
-
-  addProduct() {
-    const p = this.productForm.value;
-    this.productService.add(p).subscribe(
-      res => {
-        this.initProduct();
-        this.loadProducts();
-      }
-    );
-  }
-
-  updateProduct() {
-    this.productService.update(this.selectedProduct).subscribe(
-      res => {
-        this.initProduct();
-        this.loadProducts();
-      }
-    );
-  }
-
-  deleteProduct() {
-    const id = this.selectedProduct.id;
-    this.productService.delete(id).subscribe(
-      res => {
-        this.selectedProduct = new Product();
-        this.loadProducts();
-      }
-    );
-  }
 }

@@ -20,7 +20,7 @@ export class UserComponent implements OnInit {
 
   userForm: FormGroup;
 
-  constructor(private userService: UserService,
+  constructor(public userService: UserService,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder) { }
 
@@ -38,7 +38,7 @@ export class UserComponent implements OnInit {
 
   createUserForm() {
     this.userForm = this.formBuilder.group({
-      username: ['', Validators.required]
+      username: ['', Validators.required],
     });
   }
 
