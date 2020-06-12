@@ -39,7 +39,7 @@
         <div class="card">
           <div class="card-header bg-primary text-white">
             {{operation == 'add' ? 'Ajouter un élément' :
-            operation == 'edit' ? 'Modifier un élément' :
+              operation == 'edit' ? 'Modifier un élément' :
               operation == 'remove' ? 'Supprimer un élément': ''
             }}
           </div>
@@ -82,7 +82,7 @@
               <p class="alert-success" [hidden]="selectedItem.id">
                 L'élément a bien été supprimé !
               </p>
-              <button class="btn btn-outline-danger btn-sm" (click)="delete()"
+              <button class="btn btn-danger btn-sm" (click)="delete()"
                       [hidden]="!selectedItem.id" > Confirmer
               </button>
             </div>

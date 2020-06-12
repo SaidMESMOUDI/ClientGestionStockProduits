@@ -21,6 +21,8 @@ import {UserService} from './user/service/user.service';
 import { CrudComponent } from './crud/crud.component';
 import {CrudModule} from './crud/crud.module';
 //import {SharedModule} from './shared/shared.module';
+import {ChartModule} from 'angular2-chartjs';
+
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import {CrudModule} from './crud/crud.module';
     ProductModule,
     UserModule,
     CrudModule,
+    ChartModule
 
   ],
   providers: [

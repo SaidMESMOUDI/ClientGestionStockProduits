@@ -1,1 +1,23 @@
-<p>dashboard works!</p>
+<div class="row mt-2">
+  <div class="col-sm-6">
+    <app-my-chart
+      [type]="'line'" [title]="'Produits par catégorie'" [data]="productsData" >
+    </app-my-chart>
+  </div>
+  <div class="col-sm-6">
+    <app-my-chart
+      [type]="'bar'" [title]="'Produits par catégorie'" [data]="productsData" >
+    </app-my-chart>
+  </div>
+</div><div class="row mt-3">
+  <div class="offset-sm-1 col-sm-5">
+    <app-my-chart
+      [type]="'line'" [title]="'Réprésentation linéaire des utilisateurs'"  [data]="usersData"  >
+    </app-my-chart>
+  </div>
+  <div class="offset-sm-1 col-sm-5">
+    <app-my-chart
+      [type]="'bar'" [title]="'Utilisateurs par role'" [data]="usersData" >
+    </app-my-chart>
+  </div>
+</div>

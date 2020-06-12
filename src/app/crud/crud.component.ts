@@ -4,6 +4,9 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 
 import {ActivatedRoute} from '@angular/router';
 import {DataModel} from './model/data.model';
+import {Principal} from '../authentication/shared/model/principal.model';
+import {Store} from '@ngrx/store';
+import {PrincipalState} from '../authentication/shared/principal.state';
 
 @Component({
   selector: 'app-crud',
@@ -11,6 +14,8 @@ import {DataModel} from './model/data.model';
   styleUrls: ['./crud.component.css']
 })
 export class CrudComponent implements OnInit {
+
+  private principal: Principal;
 
   @Input() title: string;
   @Input() data: any;
@@ -28,7 +33,8 @@ export class CrudComponent implements OnInit {
   }
 
   constructor(private formBuilder: FormBuilder,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private store: Store<PrincipalState>) {
     this.createForm();
   }
 
@@ -96,5 +102,13 @@ export class CrudComponent implements OnInit {
     );
   }
 
-
+  hasRoleAdmin(){
+    let hasRole: boolean = false;
+    this.principal.authorities.forEach(item => {
+      if (item.authority === 'ROLE_ADMIN'){
+        hasRole = true;
+      }
+    });
+    return hasRole;
+  }
 }
